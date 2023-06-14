@@ -52,6 +52,7 @@ class DetailViewController: UIViewController {
     private let heartButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
         button.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
         return button
     }()
@@ -126,8 +127,8 @@ class DetailViewController: UIViewController {
         viewModel?.loadOffer(productID)
     }
     
-    @objc private func didTapHeartButton() {
-        // TODO: - Handle button action here
+    @objc private func didTapHeartButton(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
     }
 }
 

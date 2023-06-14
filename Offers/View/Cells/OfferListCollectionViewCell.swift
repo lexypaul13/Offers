@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class FeedListCollectionViewCell: UICollectionViewCell {
+class OfferListCollectionViewCell: UICollectionViewCell {
     static let identifier = "OfferListCollectionViewCell"
     
     private let productImageView: UIImageView = {
