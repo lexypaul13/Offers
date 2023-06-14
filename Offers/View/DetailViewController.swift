@@ -53,7 +53,7 @@ class DetailViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-        button.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
+        button.addTarget(DetailViewController.self, action: #selector(didTapHeartButton), for: .touchUpInside)
         return button
     }()
     

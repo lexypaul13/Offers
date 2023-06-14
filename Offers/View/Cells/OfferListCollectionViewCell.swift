@@ -23,6 +23,7 @@ class OfferListCollectionViewCell: UICollectionViewCell {
         label.font = UIFont(name: "AvenirNext-Regular", size: 11)
         label.textColor = UIColor(named: "#4A4A4A")
         label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 0 // To handle long text
         return label
     }()
     
@@ -45,49 +46,45 @@ class OfferListCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupViews() {
-        
+        contentView.backgroundColor = .gray
+        contentView.layer.cornerRadius = 10
         contentView.addSubview(productImageView)
         contentView.addSubview(productNameLabel)
         contentView.addSubview(productAmountLabel)
     }
     
     func setupConstraints() {
-        self.backgroundColor = .gray
+        let margin: CGFloat = 6
         
         productImageView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview().inset(6)
-            make.bottom.equalTo(productAmountLabel.snp.top).offset(-8)
+            make.top.equalToSuperview().inset(margin)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(contentView.snp.width).multipliedBy(0.7) 
         }
         
         productAmountLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(6)
-            make.top.equalTo(productImageView.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview().inset(margin)
+            make.top.equalTo(productImageView.snp.bottom).offset(margin)
         }
         
         productNameLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(6)
-            make.top.equalTo(productAmountLabel.snp.bottom).offset(3)
-            make.bottom.lessThanOrEqualToSuperview().inset(6)
+            make.leading.trailing.equalToSuperview().inset(margin)
+            make.top.equalTo(productAmountLabel.snp.bottom).offset(margin)
+            make.bottom.lessThanOrEqualToSuperview().inset(margin)
         }
     }
 
-    
-    func configure( productImage: URL?, productAmount: String?, productName: String?) {
-        
+    func configure(productImage: URL?, productAmount: String?, productName: String?) {
         if let productImage {
             productImageView.loadImageUsingCache(withUrl: productImage)
         }
         
         if let productAmount {
-            productAmountLabel.text = "$\(productAmount)"
+            productAmountLabel.text = productAmount
         }
-        
         
         if let productName{
             productNameLabel.text = productName
-            
         }
     }
-    
-    
 }
