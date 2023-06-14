@@ -13,27 +13,15 @@ class DetailViewController: UIViewController {
     var viewModel: OfferDetailViewModel?
     
     init(offerID: String) {
-          super.init(nibName: nil, bundle: nil)
-          self.viewModel = OfferDetailViewModel(offerID: offerID)
-      }
+        super.init(nibName: nil, bundle: nil)
+        self.viewModel = OfferDetailViewModel(offerID: offerID)
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let dimImageView:UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
-        view.alpha = 0.0
-        return view
-    }()
-    //UIColor(named: "#f4f5f7")
     
-    private let headerView:UIView = {
-        let view = UIView()
-        view.backgroundColor = .gray
-        return view
-    }()
     
     private let productImageView: UIImageView = {
         let imageView = UIImageView()
@@ -44,9 +32,12 @@ class DetailViewController: UIViewController {
     
     private let productNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
+        label.font = UIFont(name: "AvenirNext-Regular", size: 14)
         label.textColor = UIColor(named: "#4A4A4A")
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.adjustsFontForContentSizeCategory = true
+        
         return label
     }()
     
@@ -64,72 +55,64 @@ class DetailViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
         return button
     }()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getProductDetails(for: viewModel?.offerID)
-        setupHeaderView()
+        setupTableHeaderView()
         setupTableView()
+        setupLabels()
         self.view.backgroundColor = .white
     }
     
-    
-    private func setupHeaderView() {
-        view.addSubview(headerView)
+    private func setupTableHeaderView() {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 400))
+        
         headerView.addSubview(productImageView)
-        headerView.addSubview(dimImageView)
-        headerView.addSubview(productNameLabel)
-        headerView.addSubview(productPriceLabel)
-        headerView.addSubview(heartButton)
-
-        headerView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(450)
-        }
-
+        
         productImageView.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.width.equalTo(300)
+            make.center.equalToSuperview()
+            make.width.equalTo(130)
             make.height.equalTo(300)
         }
-
-        heartButton.snp.makeConstraints { make in
-             make.top.equalToSuperview().inset(20)
-             make.right.equalToSuperview().inset(20)
-         }
-
-
-        dimImageView.snp.makeConstraints { make in
-            make.edges.equalTo(productImageView)
-        }
-
-        productPriceLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview().offset(-5)
-        }
-
-        productNameLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(10)
-            make.bottom.equalTo(productPriceLabel.snp.top).offset(-5)
-        }
-
+        
+        
         if let offerImageUrl = viewModel?.offerImage {
             productImageView.loadImageUsingCache(withUrl: offerImageUrl)
         }
-
+        
+        tableView.tableHeaderView = headerView
+    }
+    private func setupLabels() {
+        let headerView = self.tableView.tableHeaderView
+        headerView?.addSubview(productNameLabel)
+        headerView?.addSubview(productPriceLabel)
+        headerView?.addSubview(heartButton)
+        
+        productNameLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview().offset(10)
+        }
+        
+        productPriceLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(10)
+            make.bottom.equalTo(productNameLabel.snp.top).offset(-5)
+        }
+        heartButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
+        }
+        
         productNameLabel.text = viewModel?.offerName
         productPriceLabel.text = viewModel?.offerPrice
     }
-
-
     
-    private func setupTableView(){
+    
+    
+    private func setupTableView() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom)
-            make.left.right.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
         
         tableView.delegate = self
@@ -138,19 +121,16 @@ class DetailViewController: UIViewController {
         tableView.register(TermsTableViewCell.self, forCellReuseIdentifier: TermsTableViewCell.identifier)
     }
     
-    
     private func getProductDetails(for productID: String?) {
         guard let productID = productID else { return }
         viewModel?.loadOffer(productID)
     }
-
-
+    
     @objc private func didTapHeartButton() {
+        // TODO: - Handle button action here
     }
-
-    
-    
 }
+
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -205,7 +185,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource{
         }
         
         return UITableViewCell()
-
+        
     }
     
     
