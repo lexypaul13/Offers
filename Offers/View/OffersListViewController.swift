@@ -7,12 +7,89 @@
 import UIKit
 
 class OffersListViewController: UIViewController {
-
+    
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 24, right: 0)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return collectionView
+    }()
+    
+ 
+    private let viewModel = OfferListViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title =  "Offer List"
         view.backgroundColor = .gray
+        setUpCollectionView()
+        getOfferList()
         // Do any additional setup after loading the view.
     }
+    
+    
+    
+    private func setUpCollectionView() {
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(FeedListCollectionViewCell.self, forCellWithReuseIdentifier: FeedListCollectionViewCell.identifier)
 
+        // Configure layout
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 8
+        layout.minimumLineSpacing = 8
+        collectionView.setCollectionViewLayout(layout, animated: true)
+    }
+
+    
+    private func getOfferList(){
+        viewModel.loadOffers()
+    }
 
 }
+
+extension OffersListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel.totalOffers
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedListCollectionViewCell.identifier, for: indexPath) as? FeedListCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        let productName =  viewModel.offerName(at: indexPath.row)
+        let productImage = viewModel.offerImageURL(at: indexPath.row)
+        let productAmount = viewModel.offerAmount(at: indexPath.row)
+
+        cell.configure(productImage: productImage, productAmount: productAmount, productName: productName)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // handle cell selection
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let lay = collectionViewLayout as! UICollectionViewFlowLayout
+        let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
+        
+        return CGSize(width:widthPerItem, height:100)
+    }
+
+    
+    
+}
+

@@ -17,11 +17,13 @@ class FeedService {
         self.dataLoader = dataLoader
     }
     
-    func loadOffers(from fileName: String, withExtension fileType: String) -> OfferList? {
-        guard let data = dataLoader.loadData(from: fileName, withExtension: fileType) else {
+    func loadOffers(from file: String, withExtension fileExtension: String) -> [Offer]? {
+        guard let url = Bundle.main.url(forResource: file, withExtension: fileExtension),
+              let data = try? Data(contentsOf: url) else {
             return nil
         }
-        return feedManager.parseJSON(data: data, type: OfferList.self)
+        return feedManager.parseJSON(data: data, type: [Offer].self)
     }
+
 }
 
