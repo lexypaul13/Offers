@@ -29,6 +29,7 @@
 		57E9B7082A396F6900C61FC0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B7072A396F6900C61FC0 /* DetailViewController.swift */; };
 		57E9B70A2A39761100C61FC0 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B7092A39761100C61FC0 /* DescriptionTableViewCell.swift */; };
 		57E9B70C2A39763900C61FC0 /* TermsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B70B2A39763900C61FC0 /* TermsTableViewCell.swift */; };
+		57F347042A3A6BA500ECD363 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F347032A3A6BA500ECD363 /* Protocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		57E9B7072A396F6900C61FC0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		57E9B7092A39761100C61FC0 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		57E9B70B2A39763900C61FC0 /* TermsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsTableViewCell.swift; sourceTree = "<group>"; };
+		57F347032A3A6BA500ECD363 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				57E9B6EB2A3792EA00C61FC0 /* View */,
 				57E9B6FE2A392E3200C61FC0 /* ViewModel */,
 				57E9B6F52A39180F00C61FC0 /* Parsing  */,
+				57E9B7052A3941CB00C61FC0 /* UIColor+Extension.swift */,
 				57E9B6C02A37902000C61FC0 /* Assets.xcassets */,
 				57E9B6C22A37902000C61FC0 /* LaunchScreen.storyboard */,
 				57E9B6C52A37902000C61FC0 /* Info.plist */,
@@ -181,7 +184,7 @@
 				57E9B6F12A39164D00C61FC0 /* FeedParser.swift */,
 				57E9B6F32A3917E500C61FC0 /* FeedService.swift */,
 				57E9B6F62A3920D600C61FC0 /* ImageCache.swift */,
-				57E9B7052A3941CB00C61FC0 /* UIColor+Extension.swift */,
+				57F347032A3A6BA500ECD363 /* Protocols.swift */,
 			);
 			path = "Parsing ";
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				57E9B7032A393CDA00C61FC0 /* OfferListCollectionViewCell.swift in Sources */,
 				57E9B70A2A39761100C61FC0 /* DescriptionTableViewCell.swift in Sources */,
 				57E9B6F42A3917E500C61FC0 /* FeedService.swift in Sources */,
+				57F347042A3A6BA500ECD363 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

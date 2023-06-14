@@ -18,7 +18,7 @@ struct Offer: Codable{
     let description: String
     let terms: String
     let currentValue: String
-    
+    var favorite = false
     enum CodingKeys: String, CodingKey {
            case id, url, name, description, terms
            case currentValue = "current_value"

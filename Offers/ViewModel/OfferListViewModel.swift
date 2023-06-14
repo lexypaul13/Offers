@@ -10,7 +10,6 @@ import Foundation
 class OfferListViewModel{
     private let feedService: FeedService
     private var offers: [Offer] = []
-    private var favorites: [String] = []
     
     init(feedService: FeedService = FeedService()) {
         self.feedService = feedService
@@ -40,19 +39,14 @@ class OfferListViewModel{
         return offers[index].currentValue
     }
     
-    func isFavorite(at index: Int) -> Bool {
+    func isOfferFavorited(at index: Int) -> Bool {
         guard index >= 0 && index < totalOffers else { return false }
-        return favorites.contains(offers[index].id)
+        return offers[index].favorite
     }
-
+    
     func toggleFavorite(at index: Int) {
         guard index >= 0 && index < totalOffers else { return }
-        let id = offers[index].id
-        if let index = favorites.firstIndex(of: id) {
-            favorites.remove(at: index)
-        } else {
-            favorites.append(id)
-        }
+        offers[index].favorite.toggle()
     }
     
     func loadOffers() {
@@ -62,10 +56,5 @@ class OfferListViewModel{
         }
         self.offers = offerList
     }
-    
-    
-    
-    
-    
-    
 }
+

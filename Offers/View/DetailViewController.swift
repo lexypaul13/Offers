@@ -32,10 +32,9 @@ class DetailViewController: UIViewController {
     
     private let productNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        label.font = UIFont(name: "AvenirNext-Regular", size: 17)
         label.textColor = UIColor(named: "#4A4A4A")
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
+        
         label.adjustsFontForContentSizeCategory = true
         
         return label
@@ -43,7 +42,7 @@ class DetailViewController: UIViewController {
     
     private let productPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
         label.textColor = UIColor(named: "#4A4A4A")
         label.adjustsFontForContentSizeCategory = true
         return label
@@ -53,7 +52,8 @@ class DetailViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-        button.addTarget(DetailViewController.self, action: #selector(didTapHeartButton), for: .touchUpInside)
+        button.tintColor = .red
+        button.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
         return button
     }()
     
@@ -84,24 +84,29 @@ class DetailViewController: UIViewController {
         
         tableView.tableHeaderView = headerView
     }
+    
+    
     private func setupLabels() {
         let headerView = self.tableView.tableHeaderView
         headerView?.addSubview(productNameLabel)
         headerView?.addSubview(productPriceLabel)
         headerView?.addSubview(heartButton)
+        let insetMargin = 10
+        let offsetMargin = 8
         
         productNameLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview().offset(10)
+            make.left.equalToSuperview().inset(insetMargin)
+            make.bottom.equalToSuperview().offset(insetMargin)
         }
         
         productPriceLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(10)
-            make.bottom.equalTo(productNameLabel.snp.top).offset(-5)
+            make.left.equalToSuperview().inset(insetMargin)
+            make.bottom.equalTo(productNameLabel.snp.top).offset(-offsetMargin)
         }
+        
         heartButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.right.equalToSuperview().offset(-10)
+            make.top.equalToSuperview().offset(insetMargin)
+            make.right.equalToSuperview().offset(-insetMargin)
         }
         
         productNameLabel.text = viewModel?.offerName

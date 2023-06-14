@@ -8,9 +8,7 @@
 import Foundation
 
 
-protocol JSONParsable {
-    func parseJSON<T: Codable>(data: Data, type: T.Type) -> T?
-}
+
 
 class FeedParser: JSONParsable {
     func parseJSON<T>(data: Data, type: T.Type) -> T? where T : Decodable, T : Encodable {

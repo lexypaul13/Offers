@@ -26,7 +26,6 @@ class OffersListViewController: UIViewController {
         view.backgroundColor = .gray
         setUpCollectionView()
         getOfferList()
-        // Do any additional setup after loading the view.
     }
     
     
@@ -48,7 +47,7 @@ class OffersListViewController: UIViewController {
 
 }
 
-extension OffersListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension OffersListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, OfferListCollectionViewCellDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.totalOffers
@@ -63,7 +62,8 @@ extension OffersListViewController: UICollectionViewDataSource, UICollectionView
         let productAmount = viewModel.offerAmount(at: indexPath.row)
 
         cell.configure(productImage: productImage, productAmount: productAmount, productName: productName)
-        
+        cell.delegate = self
+
         return cell
     }
     
@@ -90,7 +90,11 @@ extension OffersListViewController: UICollectionViewDataSource, UICollectionView
         
         return CGSize(width:size, height:size)
     }
-
+    
+    func didTapFavoriteButton(in cell: OfferListCollectionViewCell) {
+          guard let indexPath = collectionView.indexPath(for: cell) else { return }
+          viewModel.toggleFavorite(at: indexPath.row)
+      }
     
     
 }

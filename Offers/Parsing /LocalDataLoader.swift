@@ -7,9 +7,7 @@
 
 import Foundation
 
-protocol DataLoader {
-    func loadData(from fileName: String, withExtension fileType: String) -> Data?
-}
+
 
 class LocalDataLoader: DataLoader {
     func loadData(from fileName: String, withExtension fileType: String) -> Data? {
