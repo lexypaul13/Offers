@@ -75,8 +75,16 @@ extension OffersListViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // handle cell selection
+        guard let offerID = viewModel.offerId(at: indexPath.item) else{
+            return
+        }
+        let detailViewController = DetailViewController(offerID: offerID)
+
+        detailViewController.viewModel = OfferDetailViewModel(offerID: offerID)
+        
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0)

@@ -20,6 +20,11 @@ class OfferDetailViewModel{
     var offerName:String{
         return offerDetail?.name ?? "No Name Available"
     }
+    
+    var offerID:String{
+        return offerDetail?.id ?? "No Name ID"
+    }
+
     var offerPrice:String{
         return offerDetail?.currentValue ?? "No Price Available"
     }
