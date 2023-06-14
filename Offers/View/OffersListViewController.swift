@@ -11,8 +11,8 @@ class OffersListViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 5
-        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 24
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 24, right: 0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return collectionView
@@ -39,7 +39,7 @@ class OffersListViewController: UIViewController {
         }
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(FeedListCollectionViewCell.self, forCellWithReuseIdentifier: FeedListCollectionViewCell.identifier)
+        collectionView.register(OfferListCollectionViewCell.self, forCellWithReuseIdentifier: OfferListCollectionViewCell.identifier)
 
         // Configure layout
         let layout = UICollectionViewFlowLayout()
@@ -62,7 +62,7 @@ extension OffersListViewController: UICollectionViewDataSource, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedListCollectionViewCell.identifier, for: indexPath) as? FeedListCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OfferListCollectionViewCell.identifier, for: indexPath) as? OfferListCollectionViewCell else {
             return UICollectionViewCell()
         }
         let productName =  viewModel.offerName(at: indexPath.row)
