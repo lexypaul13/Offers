@@ -8,14 +8,12 @@
 import Foundation
 
 
-struct OfferList:Codable{
-    let offer: [Offer]
-}
+typealias OfferList = [Offer]
 
 
 struct Offer: Codable{
     let id: String
-    let url: URL
+    let url: URL?
     let name: String
     let description: String
     let terms: String

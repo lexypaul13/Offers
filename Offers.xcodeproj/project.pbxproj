@@ -22,7 +22,10 @@
 		57E9B6F72A3920D600C61FC0 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6F62A3920D600C61FC0 /* ImageCache.swift */; };
 		57E9B6F92A3922D100C61FC0 /* LocalDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6F82A3922D100C61FC0 /* LocalDataLoader.swift */; };
 		57E9B6FB2A39252400C61FC0 /* OfferListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6FA2A39252400C61FC0 /* OfferListViewModel.swift */; };
-		57E9B6FD2A392E2300C61FC0 /* OfferDetailListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6FC2A392E2300C61FC0 /* OfferDetailListViewModel.swift */; };
+		57E9B6FD2A392E2300C61FC0 /* OfferDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6FC2A392E2300C61FC0 /* OfferDetailViewModel.swift */; };
+		57E9B7012A3931CB00C61FC0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 57E9B7002A3931CB00C61FC0 /* SnapKit */; };
+		57E9B7032A393CDA00C61FC0 /* FeedListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B7022A393CDA00C61FC0 /* FeedListCollectionViewCell.swift */; };
+		57E9B7062A3941CB00C61FC0 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B7052A3941CB00C61FC0 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +65,9 @@
 		57E9B6F62A3920D600C61FC0 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		57E9B6F82A3922D100C61FC0 /* LocalDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataLoader.swift; sourceTree = "<group>"; };
 		57E9B6FA2A39252400C61FC0 /* OfferListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferListViewModel.swift; sourceTree = "<group>"; };
-		57E9B6FC2A392E2300C61FC0 /* OfferDetailListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailListViewModel.swift; sourceTree = "<group>"; };
+		57E9B6FC2A392E2300C61FC0 /* OfferDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailViewModel.swift; sourceTree = "<group>"; };
+		57E9B7022A393CDA00C61FC0 /* FeedListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListCollectionViewCell.swift; sourceTree = "<group>"; };
+		57E9B7052A3941CB00C61FC0 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57E9B7012A3931CB00C61FC0 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,10 +121,10 @@
 			children = (
 				57E9B6B72A37901E00C61FC0 /* AppDelegate.swift */,
 				57E9B6B92A37901E00C61FC0 /* SceneDelegate.swift */,
-				57E9B6FE2A392E3200C61FC0 /* ViewModel */,
-				57E9B6F52A39180F00C61FC0 /* Parsing  */,
 				57E9B6EC2A37938700C61FC0 /* Model */,
 				57E9B6EB2A3792EA00C61FC0 /* View */,
+				57E9B6FE2A392E3200C61FC0 /* ViewModel */,
+				57E9B6F52A39180F00C61FC0 /* Parsing  */,
 				57E9B6C02A37902000C61FC0 /* Assets.xcassets */,
 				57E9B6C22A37902000C61FC0 /* LaunchScreen.storyboard */,
 				57E9B6C52A37902000C61FC0 /* Info.plist */,
@@ -147,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				57E9B6E92A37924E00C61FC0 /* OffersListViewController.swift */,
+				57E9B7042A3940BA00C61FC0 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -167,6 +174,7 @@
 				57E9B6F12A39164D00C61FC0 /* FeedParser.swift */,
 				57E9B6F32A3917E500C61FC0 /* FeedService.swift */,
 				57E9B6F62A3920D600C61FC0 /* ImageCache.swift */,
+				57E9B7052A3941CB00C61FC0 /* UIColor+Extension.swift */,
 			);
 			path = "Parsing ";
 			sourceTree = "<group>";
@@ -174,10 +182,18 @@
 		57E9B6FE2A392E3200C61FC0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				57E9B6FC2A392E2300C61FC0 /* OfferDetailListViewModel.swift */,
 				57E9B6FA2A39252400C61FC0 /* OfferListViewModel.swift */,
+				57E9B6FC2A392E2300C61FC0 /* OfferDetailViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		57E9B7042A3940BA00C61FC0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				57E9B7022A393CDA00C61FC0 /* FeedListCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +212,9 @@
 			dependencies = (
 			);
 			name = Offers;
+			packageProductDependencies = (
+				57E9B7002A3931CB00C61FC0 /* SnapKit */,
+			);
 			productName = Offers;
 			productReference = 57E9B6B42A37901E00C61FC0 /* Offers.app */;
 			productType = "com.apple.product-type.application";
@@ -268,6 +287,9 @@
 				Base,
 			);
 			mainGroup = 57E9B6AB2A37901E00C61FC0;
+			packageReferences = (
+				57E9B6FF2A3931CB00C61FC0 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 57E9B6B52A37901E00C61FC0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -314,12 +336,14 @@
 				57E9B6FB2A39252400C61FC0 /* OfferListViewModel.swift in Sources */,
 				57E9B6F02A39136000C61FC0 /* OfferList.swift in Sources */,
 				57E9B6F72A3920D600C61FC0 /* ImageCache.swift in Sources */,
+				57E9B7062A3941CB00C61FC0 /* UIColor+Extension.swift in Sources */,
 				57E9B6F22A39164D00C61FC0 /* FeedParser.swift in Sources */,
 				57E9B6B82A37901E00C61FC0 /* AppDelegate.swift in Sources */,
 				57E9B6F92A3922D100C61FC0 /* LocalDataLoader.swift in Sources */,
-				57E9B6FD2A392E2300C61FC0 /* OfferDetailListViewModel.swift in Sources */,
+				57E9B6FD2A392E2300C61FC0 /* OfferDetailViewModel.swift in Sources */,
 				57E9B6EA2A37924E00C61FC0 /* OffersListViewController.swift in Sources */,
 				57E9B6BA2A37901E00C61FC0 /* SceneDelegate.swift in Sources */,
+				57E9B7032A393CDA00C61FC0 /* FeedListCollectionViewCell.swift in Sources */,
 				57E9B6F42A3917E500C61FC0 /* FeedService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -652,6 +676,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		57E9B6FF2A3931CB00C61FC0 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		57E9B7002A3931CB00C61FC0 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57E9B6FF2A3931CB00C61FC0 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 57E9B6AC2A37901E00C61FC0 /* Project object */;
 }

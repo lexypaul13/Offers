@@ -60,7 +60,7 @@ class OfferListViewModel{
             print("Failed to load offers")
             return
         }
-        self.offers = offerList.offer
+        self.offers = offerList
     }
     
     

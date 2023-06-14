@@ -12,10 +12,10 @@ class OfferDetailViewModel{
     private let feedService: FeedService
     private var offerDetail: Offer?
     
-    init(feedService: FeedService = FeedService()) {
-        self.feedService = feedService
-    }
-    
+    init(offerID: String, feedService: FeedService = FeedService()) {
+         self.feedService = feedService
+         loadOffer(offerID)
+     }
     
     var offerName:String{
         return offerDetail?.name ?? "No Name Available"
@@ -30,4 +30,19 @@ class OfferDetailViewModel{
     var offerTerms: String{
         return offerDetail?.terms ?? "No Terms Available"
     }
+    
+    var offerImage: URL?{
+        return offerDetail?.url
+    }
+    
+    func  loadOffer(_ withID: String) {
+        guard let offerList = feedService.loadOffers(from: "Offers", withExtension: "json") else {
+            print("Failed to load offers")
+            return
+        }
+        self.offerDetail = offerList.first(where: {$0.id == withID})
+    }
+    
+    
+    
 }
