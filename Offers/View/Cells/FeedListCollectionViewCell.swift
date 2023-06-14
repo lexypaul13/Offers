@@ -13,7 +13,8 @@ class FeedListCollectionViewCell: UICollectionViewCell {
     
     private let productImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
         return imageView
     }()
     

@@ -136,9 +136,6 @@ class DetailViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(DescriptionTableViewCell.self, forCellReuseIdentifier: DescriptionTableViewCell.identifier)
         tableView.register(TermsTableViewCell.self, forCellReuseIdentifier: TermsTableViewCell.identifier)
-        
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100
     }
     
     
@@ -149,7 +146,6 @@ class DetailViewController: UIViewController {
 
 
     @objc private func didTapHeartButton() {
-        // Add your desired action here
     }
 
     
