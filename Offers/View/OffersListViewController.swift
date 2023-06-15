@@ -42,8 +42,17 @@ class OffersListViewController: UIViewController {
 
     
     private func getOfferList(){
-        viewModel.loadOffers()
-    }
+         viewModel.loadOffers { [weak self] (result) in
+             switch result {
+             case .success:
+                 DispatchQueue.main.async {
+                     self?.collectionView.reloadData()
+                 }
+             case .failure(let error):
+                 print(error)
+             }
+         }
+     }
 
 }
 

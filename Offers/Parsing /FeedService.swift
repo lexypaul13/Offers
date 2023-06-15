@@ -8,22 +8,28 @@
 import Foundation
 
 class FeedService {
-    
-    private let feedManager: JSONParsable
-    private let dataLoader: DataLoader
+    private var offers: [Offer] = []
 
-    init(feedManager: JSONParsable = FeedParser(), dataLoader: DataLoader = LocalDataLoader()) {
+    private let feedManager: JSONParsable & DataLoader
+
+    init(feedManager: (JSONParsable & DataLoader) = FeedParser()) {
         self.feedManager = feedManager
-        self.dataLoader = dataLoader
     }
     
     func loadOffers(from file: String, withExtension fileExtension: String) -> [Offer]? {
-        guard let url = Bundle.main.url(forResource: file, withExtension: fileExtension),
-              let data = try? Data(contentsOf: url) else {
+        guard let data = feedManager.loadData(from: file, withExtension: fileExtension),
+              let parsedOffers = feedManager.parseJSON(data: data, type: [Offer].self)
+        else {
             return nil
         }
-        return feedManager.parseJSON(data: data, type: [Offer].self)
+        self.offers = parsedOffers
+        return parsedOffers
     }
 
+}
+
+
+enum FeedServiceError: Error {
+    case failedToLoadOffers
 }
 

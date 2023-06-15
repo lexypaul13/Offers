@@ -49,12 +49,14 @@ class OfferListViewModel{
         offers[index].favorite.toggle()
     }
     
-    func loadOffers() {
-        guard let offerList = feedService.loadOffers(from: "Offers", withExtension: "json") else {
-            print("Failed to load offers")
-            return
+    func loadOffers(completion: @escaping (Result<Void, Error>) -> Void) {
+            if let offerList = feedService.loadOffers(from: "Offers", withExtension: "json") {
+                self.offers = offerList
+                completion(.success(()))
+            } else {
+                completion(.failure(FeedServiceError.failedToLoadOffers))
+            }
         }
-        self.offers = offerList
-    }
 }
+
 
