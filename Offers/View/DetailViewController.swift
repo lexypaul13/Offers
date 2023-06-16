@@ -6,22 +6,14 @@
 //
 
 import UIKit
-
+// MARK: - DetailViewController
 class DetailViewController: UIViewController {
     
+    // MARK: - Properties
     private let tableView = UITableView()
     var viewModel: OfferDetailViewModel?
     var isFavorite : Bool = false
     var callback :((Bool)->Void)?
-    
-    init(offerID: String) {
-        super.init(nibName: nil, bundle: nil)
-        self.viewModel = OfferDetailViewModel(offerID: offerID)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     private let productImageView: UIImageView = {
         let imageView = UIImageView()
@@ -33,7 +25,7 @@ class DetailViewController: UIViewController {
     private let productNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "AvenirNext-Regular", size: 17)
-        label.textColor = UIColor(named: "#4A4A4A")
+        label.textColor =  UIColor(name: "#4A4A4A")
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
@@ -41,7 +33,7 @@ class DetailViewController: UIViewController {
     private let productPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
-        label.textColor = UIColor(named: "#4A4A4A")
+        label.textColor =  UIColor(name: "#4A4A4A")
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
@@ -55,6 +47,17 @@ class DetailViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Initializers
+    init(offerID: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.viewModel = OfferDetailViewModel(offerID: offerID)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Life Cycle Methods
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -66,26 +69,32 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         heartButton.isSelected = isFavorite
-        getProductDetails(for: viewModel?.offerID)
+        
         setupTableHeaderView()
         setupTableView()
-        setupLabels()
         self.view.backgroundColor = .white
+        
+        viewModel?.loadOffer(viewModel?.offerID ?? "", completion: { [weak self] result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self?.setupLabels()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        })
     }
     
+    // MARK: - Setup Methods
     private func setupTableHeaderView() {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 400))
         
         headerView.addSubview(productImageView)
-        
         productImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.equalTo(130)
             make.height.equalTo(300)
-        }
-        
-        if let offerImageUrl = viewModel?.offerImage {
-            productImageView.loadImageUsingCache(withUrl: offerImageUrl)
         }
         
         tableView.tableHeaderView = headerView
@@ -116,6 +125,10 @@ class DetailViewController: UIViewController {
         
         productNameLabel.text = viewModel?.offerName
         productPriceLabel.text = viewModel?.offerPrice
+        
+        if let offerImageUrl = viewModel?.offerImage {
+            productImageView.loadImageUsingCache(withUrl: offerImageUrl)
+        }
     }
     
     private func setupTableView() {
@@ -130,11 +143,6 @@ class DetailViewController: UIViewController {
         tableView.register(TermsTableViewCell.self, forCellReuseIdentifier: TermsTableViewCell.identifier)
     }
     
-    private func getProductDetails(for productID: String?) {
-        guard let productID = productID else { return }
-        viewModel?.loadOffer(productID)
-    }
-    
     @objc private func didTapHeartButton(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         isFavorite = sender.isSelected
@@ -142,8 +150,11 @@ class DetailViewController: UIViewController {
     }
 }
 
-
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    
+    // MARK: - TableView Delegate & Data Source Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }

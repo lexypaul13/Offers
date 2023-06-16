@@ -9,12 +9,15 @@ import UIKit
 import SnapKit
 
 class OfferListCollectionViewCell: UICollectionViewCell {
+    // Identifier for the cell class
     static let identifier = "OfferListCollectionViewCell"
+    
     weak var delegate: OfferListCollectionViewCellDelegate?
     
+    // MARK: - UI Components
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "#939596")
+        view.backgroundColor = UIColor(name:"#E7E7E7")
         view.layer.cornerRadius = 5
         return view
     }()
@@ -38,7 +41,7 @@ class OfferListCollectionViewCell: UICollectionViewCell {
     private let productNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "AvenirNext-Regular", size: 11)
-        label.textColor = UIColor(named: "#4A4A4A")
+        label.textColor = UIColor(name: "#4A4A4A")
         label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 0 // To handle long text
         return label
@@ -47,11 +50,12 @@ class OfferListCollectionViewCell: UICollectionViewCell {
     private let productAmountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
-        label.textColor = UIColor(named: "#4A4A4A")
+        label.textColor = UIColor(name:"#4A4A4A")
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
     
+    // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -62,6 +66,7 @@ class OfferListCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setup methods
     private func setupViews() {
         contentView.addSubview(containerView)
         contentView.addSubview(heartButton)
@@ -75,6 +80,7 @@ class OfferListCollectionViewCell: UICollectionViewCell {
         let containerInsets: CGFloat = 6
         let imageInsets: CGFloat = 6
         let bottomMargin: CGFloat = 8
+        
         containerView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview().inset(containerInsets)
             make.height.equalTo(contentView.snp.height).multipliedBy(0.7)
@@ -94,25 +100,26 @@ class OfferListCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(productAmountLabel.snp.bottom).offset(bottomMargin)
             make.bottom.lessThanOrEqualToSuperview().inset(margin)
         }
-        heartButton.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview().inset(6)
-        }
         
+        heartButton.snp.makeConstraints { make in
+            make.top.trailing.equalToSuperview().inset(margin)
+        }
     }
     
+    // MARK: - Button Actions
     @objc private func didTapHeartButton(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+        sender.isSelected.toggle()
         delegate?.didTapFavoriteButton(in: self)
     }
     
-    func configure(productImage: URL?, productAmount: String?, productName: String?, isFavorite: Bool) {
-        if let productImage = productImage {
-            productImageView.loadImageUsingCache(withUrl: productImage)
+    // MARK: - Configuration Method
+    func configure(productImage: URL?, productAmount: String?, productName: String?, isFavourite: Bool) {
+        guard let productImage else {
+            return 
         }
-        
+        productImageView.loadImageUsingCache(withUrl: productImage)
         productAmountLabel.text = productAmount
         productNameLabel.text = productName
-        heartButton.isSelected = isFavorite
+        heartButton.isSelected = isFavourite
     }
 }
-

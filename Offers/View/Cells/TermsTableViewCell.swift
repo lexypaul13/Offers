@@ -8,9 +8,11 @@
 import UIKit
 
 class TermsTableViewCell: UITableViewCell {
-
+    
+    // Identifier for the cell class
     static let identifier = "TermsTableViewCell"
     
+    // MARK: - UI Components
     private let termsLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -19,7 +21,7 @@ class TermsTableViewCell: UITableViewCell {
         return label
     }()
     
-    
+    // MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(termsLabel)
@@ -32,6 +34,7 @@ class TermsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Configuration Method
     func configure(with instructions: String?) {
         guard let instructions = instructions else{
             return

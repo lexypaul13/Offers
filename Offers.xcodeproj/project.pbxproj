@@ -17,8 +17,8 @@
 		57E9B6EA2A37924E00C61FC0 /* OffersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6E92A37924E00C61FC0 /* OffersListViewController.swift */; };
 		57E9B6EE2A3793B200C61FC0 /* Offers.json in Resources */ = {isa = PBXBuildFile; fileRef = 57E9B6ED2A3793B200C61FC0 /* Offers.json */; };
 		57E9B6F02A39136000C61FC0 /* OfferList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6EF2A39136000C61FC0 /* OfferList.swift */; };
-		57E9B6F22A39164D00C61FC0 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6F12A39164D00C61FC0 /* FeedParser.swift */; };
-		57E9B6F42A3917E500C61FC0 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6F32A3917E500C61FC0 /* FeedService.swift */; };
+		57E9B6F22A39164D00C61FC0 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6F12A39164D00C61FC0 /* JSONParser.swift */; };
+		57E9B6F42A3917E500C61FC0 /* OfferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6F32A3917E500C61FC0 /* OfferService.swift */; };
 		57E9B6F72A3920D600C61FC0 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6F62A3920D600C61FC0 /* ImageCache.swift */; };
 		57E9B6FB2A39252400C61FC0 /* OfferListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6FA2A39252400C61FC0 /* OfferListViewModel.swift */; };
 		57E9B6FD2A392E2300C61FC0 /* OfferDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6FC2A392E2300C61FC0 /* OfferDetailViewModel.swift */; };
@@ -63,8 +63,8 @@
 		57E9B6E92A37924E00C61FC0 /* OffersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersListViewController.swift; sourceTree = "<group>"; };
 		57E9B6ED2A3793B200C61FC0 /* Offers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Offers.json; sourceTree = "<group>"; };
 		57E9B6EF2A39136000C61FC0 /* OfferList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferList.swift; sourceTree = "<group>"; };
-		57E9B6F12A39164D00C61FC0 /* FeedParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
-		57E9B6F32A3917E500C61FC0 /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
+		57E9B6F12A39164D00C61FC0 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		57E9B6F32A3917E500C61FC0 /* OfferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferService.swift; sourceTree = "<group>"; };
 		57E9B6F62A3920D600C61FC0 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		57E9B6FA2A39252400C61FC0 /* OfferListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferListViewModel.swift; sourceTree = "<group>"; };
 		57E9B6FC2A392E2300C61FC0 /* OfferDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailViewModel.swift; sourceTree = "<group>"; };
@@ -178,8 +178,8 @@
 		57E9B6F52A39180F00C61FC0 /* Parsing  */ = {
 			isa = PBXGroup;
 			children = (
-				57E9B6F12A39164D00C61FC0 /* FeedParser.swift */,
-				57E9B6F32A3917E500C61FC0 /* FeedService.swift */,
+				57E9B6F12A39164D00C61FC0 /* JSONParser.swift */,
+				57E9B6F32A3917E500C61FC0 /* OfferService.swift */,
 				57E9B6F62A3920D600C61FC0 /* ImageCache.swift */,
 				57F347032A3A6BA500ECD363 /* Protocols.swift */,
 			);
@@ -347,7 +347,7 @@
 				57E9B6F02A39136000C61FC0 /* OfferList.swift in Sources */,
 				57E9B6F72A3920D600C61FC0 /* ImageCache.swift in Sources */,
 				57E9B7062A3941CB00C61FC0 /* UIColor+Extension.swift in Sources */,
-				57E9B6F22A39164D00C61FC0 /* FeedParser.swift in Sources */,
+				57E9B6F22A39164D00C61FC0 /* JSONParser.swift in Sources */,
 				57E9B6B82A37901E00C61FC0 /* AppDelegate.swift in Sources */,
 				57E9B6FD2A392E2300C61FC0 /* OfferDetailViewModel.swift in Sources */,
 				57E9B70C2A39763900C61FC0 /* TermsTableViewCell.swift in Sources */,
@@ -355,7 +355,7 @@
 				57E9B6BA2A37901E00C61FC0 /* SceneDelegate.swift in Sources */,
 				57E9B7032A393CDA00C61FC0 /* OfferListCollectionViewCell.swift in Sources */,
 				57E9B70A2A39761100C61FC0 /* DescriptionTableViewCell.swift in Sources */,
-				57E9B6F42A3917E500C61FC0 /* FeedService.swift in Sources */,
+				57E9B6F42A3917E500C61FC0 /* OfferService.swift in Sources */,
 				57F347042A3A6BA500ECD363 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

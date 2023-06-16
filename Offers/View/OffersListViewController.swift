@@ -5,9 +5,10 @@
 //
 
 import UIKit
-
+// MARK: - OffersListViewController
 class OffersListViewController: UIViewController {
     
+    // MARK: - Properties
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -19,6 +20,8 @@ class OffersListViewController: UIViewController {
     
     private let viewModel = OfferListViewModel()
     
+    
+    // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title =  "Offer List"
@@ -34,6 +37,8 @@ class OffersListViewController: UIViewController {
         }
     }
     
+    
+    // MARK: - Setup Methods
     private func setUpCollectionView() {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
@@ -57,9 +62,11 @@ class OffersListViewController: UIViewController {
         }
     }
 }
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, OfferListCollectionViewCellDelegate
 
 extension OffersListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, OfferListCollectionViewCellDelegate {
 
+    // MARK: - CollectionView DataSource & Delegate Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.totalOffers
     }
@@ -73,7 +80,7 @@ extension OffersListViewController: UICollectionViewDataSource, UICollectionView
         let productAmount = viewModel.offerAmount(at: indexPath.row)
         let isFavorite = viewModel.isFavorite(at: indexPath.row)
 
-        cell.configure(productImage: productImage, productAmount: productAmount, productName: productName,isFavorite: isFavorite)
+        cell.configure(productImage: productImage, productAmount: productAmount, productName: productName,isFavourite: isFavorite)
         cell.delegate = self
 
         return cell
@@ -90,6 +97,7 @@ extension OffersListViewController: UICollectionViewDataSource, UICollectionView
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 
+    // MARK: - CollectionView Delegate FlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 12.0, left: 12.0, bottom: 12.0, right: 12.0)
     }
@@ -100,6 +108,7 @@ extension OffersListViewController: UICollectionViewDataSource, UICollectionView
         return CGSize(width:size, height:size)
     }
     
+    // MARK: - OfferListCollectionViewCellDelegate
     func didTapFavoriteButton(in cell: OfferListCollectionViewCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         viewModel.toggleFavorite(at: indexPath.row)

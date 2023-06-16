@@ -7,22 +7,25 @@
 
 import Foundation
 
+// MARK: - OfferDetailViewModel
 class OfferDetailViewModel{
     
-    private let feedService: FeedService
+    // MARK: - Properties
+    private let offerService: OfferService
     private var offerDetail: Offer?
+     let offerID: String
+
     
-    init(offerID: String, feedService: FeedService = FeedService()) {
-         self.feedService = feedService
-         loadOffer(offerID)
+    // MARK: - Initialization
+    init(offerID: String, offerService: OfferService = OfferService()) {
+         self.offerService = offerService
+         self.offerID = offerID
      }
     
+    
+    // MARK: - Computed Properties
     var offerName:String{
         return offerDetail?.name ?? "No Name Available"
-    }
-    
-    var offerID:String{
-        return offerDetail?.id ?? "No Name ID"
     }
 
     var offerPrice:String{
@@ -40,13 +43,20 @@ class OfferDetailViewModel{
         return offerDetail?.url
     }
     
-    func  loadOffer(_ withID: String) {
-        guard let offerList = feedService.loadOffers(from: "Offers", withExtension: "json") else {
-            print("Failed to load offers")
+    
+    // MARK: - Public Methods
+    func loadOffer(_ withID: String, completion: @escaping (Result<Offer?, Error>) -> Void) {
+        guard let offerList = offerService.loadOffers(from: "Offers", withExtension: "json") else {
+            let error = OfferServiceError.failedToLoadOffers
+            print("Failed to load offers: \(error)")
+            completion(.failure(error))
             return
         }
+        
         self.offerDetail = offerList.first(where: {$0.id == withID})
+        completion(.success(self.offerDetail))
     }
+
     
     
     

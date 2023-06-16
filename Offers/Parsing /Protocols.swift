@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+// MARK: - Protocols
 protocol DataLoader {
     func loadData(from fileName: String, withExtension fileType: String) -> Data?
 }

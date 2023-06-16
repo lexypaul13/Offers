@@ -6,6 +6,7 @@
 //
 
 import UIKit
+// MARK: - ImageCache
 
 let imageCache = NSCache<NSString, UIImage>()
 

@@ -7,7 +7,10 @@
 
 import Foundation
 
-class FeedParser: JSONParsable, DataLoader {
+// MARK: - JSONParser
+class JSONParser: JSONParsable, DataLoader {
+    
+    // MARK: - DataLoader
     func loadData(from fileName: String, withExtension fileType: String) -> Data? {
         guard let url = Bundle.main.url(forResource: fileName, withExtension: fileType),
               let data = try? Data(contentsOf: url)
@@ -17,6 +20,7 @@ class FeedParser: JSONParsable, DataLoader {
         return data
     }
     
+    // MARK: - JSONParsable
     func parseJSON<T>(data: Data, type: T.Type) -> T? where T : Decodable, T : Encodable {
         let decoder = JSONDecoder()
         do {
