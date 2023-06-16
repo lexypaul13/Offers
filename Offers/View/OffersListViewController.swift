@@ -17,7 +17,6 @@ class OffersListViewController: UIViewController {
         return collectionView
     }()
     
- 
     private let viewModel = OfferListViewModel()
     
     override func viewDidLoad() {
@@ -28,7 +27,12 @@ class OffersListViewController: UIViewController {
         getOfferList()
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
     
     private func setUpCollectionView() {
         view.addSubview(collectionView)
@@ -39,21 +43,19 @@ class OffersListViewController: UIViewController {
         collectionView.delegate = self
         collectionView.register(OfferListCollectionViewCell.self, forCellWithReuseIdentifier: OfferListCollectionViewCell.identifier)
     }
-
     
-    private func getOfferList(){
-         viewModel.loadOffers { [weak self] (result) in
-             switch result {
-             case .success:
-                 DispatchQueue.main.async {
-                     self?.collectionView.reloadData()
-                 }
-             case .failure(let error):
-                 print(error)
-             }
-         }
-     }
-
+    private func getOfferList() {
+        viewModel.loadOffers { [weak self] (result) in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 extension OffersListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, OfferListCollectionViewCellDelegate {
@@ -66,45 +68,41 @@ extension OffersListViewController: UICollectionViewDataSource, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OfferListCollectionViewCell.identifier, for: indexPath) as? OfferListCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let productName =  viewModel.offerName(at: indexPath.row)
+        let productName = viewModel.offerName(at: indexPath.row)
         let productImage = viewModel.offerImageURL(at: indexPath.row)
         let productAmount = viewModel.offerAmount(at: indexPath.row)
+        let isFavorite = viewModel.isFavorite(at: indexPath.row)
 
-        cell.configure(productImage: productImage, productAmount: productAmount, productName: productName)
+        cell.configure(productImage: productImage, productAmount: productAmount, productName: productName,isFavorite: isFavorite)
         cell.delegate = self
 
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let offerID = viewModel.offerId(at: indexPath.item) else{
-            return
-        }
+        guard let offerID = viewModel.offerId(at: indexPath.item) else { return }
         let detailViewController = DetailViewController(offerID: offerID)
-
         detailViewController.viewModel = OfferDetailViewModel(offerID: offerID)
-        
+        detailViewController.isFavorite = viewModel.isFavorite(at: indexPath.item)
+        detailViewController.callback = { (value) in
+            self.viewModel.setIsFavorite(at: indexPath.item, value: value)
+        }
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 12.0, left: 12.0, bottom: 12.0, right: 12.0)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout
         let space: CGFloat = 5
         let size:CGFloat = (collectionView.frame.width / 2) - space - 12
-        
         return CGSize(width:size, height:size)
     }
     
     func didTapFavoriteButton(in cell: OfferListCollectionViewCell) {
-          guard let indexPath = collectionView.indexPath(for: cell) else { return }
-          viewModel.toggleFavorite(at: indexPath.row)
-      }
-    
-    
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        viewModel.toggleFavorite(at: indexPath.row)
+    }
 }
 

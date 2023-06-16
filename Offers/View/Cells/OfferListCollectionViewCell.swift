@@ -103,23 +103,16 @@ class OfferListCollectionViewCell: UICollectionViewCell {
     @objc private func didTapHeartButton(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         delegate?.didTapFavoriteButton(in: self)
-        
     }
     
-    func configure(productImage: URL?, productAmount: String?, productName: String?) {
-        if let productImage {
+    func configure(productImage: URL?, productAmount: String?, productName: String?, isFavorite: Bool) {
+        if let productImage = productImage {
             productImageView.loadImageUsingCache(withUrl: productImage)
         }
         
-        if let productAmount {
-            productAmountLabel.text = productAmount
-        }
-        
-        if let productName{
-            productNameLabel.text = productName
-        }
+        productAmountLabel.text = productAmount
+        productNameLabel.text = productName
+        heartButton.isSelected = isFavorite
     }
 }
-
-
 

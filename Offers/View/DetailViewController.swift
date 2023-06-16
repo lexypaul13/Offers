@@ -11,6 +11,8 @@ class DetailViewController: UIViewController {
     
     private let tableView = UITableView()
     var viewModel: OfferDetailViewModel?
+    var isFavorite : Bool = false
+    var callback :((Bool)->Void)?
     
     init(offerID: String) {
         super.init(nibName: nil, bundle: nil)
@@ -20,8 +22,6 @@ class DetailViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     
     private let productImageView: UIImageView = {
         let imageView = UIImageView()
@@ -34,9 +34,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont(name: "AvenirNext-Regular", size: 17)
         label.textColor = UIColor(named: "#4A4A4A")
-        
         label.adjustsFontForContentSizeCategory = true
-        
         return label
     }()
     
@@ -57,8 +55,17 @@ class DetailViewController: UIViewController {
         return button
     }()
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if self.isMovingFromParent {
+            callback?(heartButton.isSelected)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        heartButton.isSelected = isFavorite
         getProductDetails(for: viewModel?.offerID)
         setupTableHeaderView()
         setupTableView()
@@ -77,14 +84,12 @@ class DetailViewController: UIViewController {
             make.height.equalTo(300)
         }
         
-        
         if let offerImageUrl = viewModel?.offerImage {
             productImageView.loadImageUsingCache(withUrl: offerImageUrl)
         }
         
         tableView.tableHeaderView = headerView
     }
-    
     
     private func setupLabels() {
         let headerView = self.tableView.tableHeaderView
@@ -113,8 +118,6 @@ class DetailViewController: UIViewController {
         productPriceLabel.text = viewModel?.offerPrice
     }
     
-    
-    
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
@@ -134,6 +137,8 @@ class DetailViewController: UIViewController {
     
     @objc private func didTapHeartButton(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        isFavorite = sender.isSelected
+        heartButton.isSelected = isFavorite
     }
 }
 
@@ -143,30 +148,20 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource{
         return 2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return 1
-        default:
-            return 0
-        }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 30))
         headerView.backgroundColor = .lightGray
-        
+    
         let titleLabel = UILabel()
         titleLabel.frame = CGRect(x: 15, y: 0, width: headerView.bounds.width - 30, height: headerView.bounds.height)
         titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         titleLabel.textColor = .white
         titleLabel.adjustsFontForContentSizeCategory = true
-        if section == 0 {
-            titleLabel.text = "Product Description."
-        } else if section == 1 {
-            titleLabel.text = "Product Terms."
-        }
+        
+        titleLabel.text = section == 0 ? "Product Description." : "Product Terms."
         
         headerView.addSubview(titleLabel)
         
@@ -177,22 +172,17 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource{
         return 30
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionTableViewCell.identifier, for: indexPath) as! DescriptionTableViewCell
             cell.configure(with: viewModel?.offerDesctiption)
             return cell
-        } else if indexPath.section == 1{
+        } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TermsTableViewCell.identifier, for: indexPath) as! TermsTableViewCell
             
             cell.configure(with: viewModel?.offerTerms)
             return cell
         }
-        
-        return UITableViewCell()
-        
     }
-    
-    
 }
+
