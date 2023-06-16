@@ -17,15 +17,15 @@ class OfferListCollectionViewCell: UICollectionViewCell {
     // MARK: - UI Components
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(name:"#E7E7E7")
+        view.backgroundColor = AppColor.lightGray.color
         view.layer.cornerRadius = 5
         return view
     }()
     
     private let heartButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(systemName: "heart"), for: .normal)
-        button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        button.setImage(SystemImage.heart.image, for: .normal)
+        button.setImage(SystemImage.heartFill.image, for: .selected)
         button.tintColor = .red
         button.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
         return button
@@ -40,20 +40,20 @@ class OfferListCollectionViewCell: UICollectionViewCell {
     
     private let productNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Regular", size: 11)
-        label.textColor = UIColor(name: "#4A4A4A")
+        label.font = AppFont.avenirNextRegular.size(11)
+        label.textColor = AppColor.darkGray.color
         label.adjustsFontForContentSizeCategory = true
-        label.numberOfLines = 0 // To handle long text
         return label
     }()
-    
+
     private let productAmountLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
-        label.textColor = UIColor(name:"#4A4A4A")
+        label.font = AppFont.avenirNextDemiBold.size(12)
+        label.textColor = AppColor.darkGray.color
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
+
     
     // MARK: - Initializers
     override init(frame: CGRect) {
@@ -83,7 +83,7 @@ class OfferListCollectionViewCell: UICollectionViewCell {
         
         containerView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview().inset(containerInsets)
-            make.height.equalTo(contentView.snp.height).multipliedBy(0.7)
+            make.height.equalTo(contentView.snp.height).multipliedBy(0.6)
         }
         
         productImageView.snp.makeConstraints { make in

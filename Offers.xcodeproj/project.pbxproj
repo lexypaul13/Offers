@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		578B12882A3CDA4F008595A9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578B12872A3CDA4F008595A9 /* Enums.swift */; };
 		57E9B6B82A37901E00C61FC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6B72A37901E00C61FC0 /* AppDelegate.swift */; };
 		57E9B6BA2A37901E00C61FC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6B92A37901E00C61FC0 /* SceneDelegate.swift */; };
 		57E9B6C12A37902000C61FC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57E9B6C02A37902000C61FC0 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		578B12872A3CDA4F008595A9 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		57E9B6B42A37901E00C61FC0 /* Offers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Offers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E9B6B72A37901E00C61FC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57E9B6B92A37901E00C61FC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				57E9B6FE2A392E3200C61FC0 /* ViewModel */,
 				57E9B6F52A39180F00C61FC0 /* Parsing  */,
 				57E9B7052A3941CB00C61FC0 /* UIColor+Extension.swift */,
+				578B12872A3CDA4F008595A9 /* Enums.swift */,
 				57E9B6C02A37902000C61FC0 /* Assets.xcassets */,
 				57E9B6C22A37902000C61FC0 /* LaunchScreen.storyboard */,
 				57E9B6C52A37902000C61FC0 /* Info.plist */,
@@ -356,6 +359,7 @@
 				57E9B7032A393CDA00C61FC0 /* OfferListCollectionViewCell.swift in Sources */,
 				57E9B70A2A39761100C61FC0 /* DescriptionTableViewCell.swift in Sources */,
 				57E9B6F42A3917E500C61FC0 /* OfferService.swift in Sources */,
+				578B12882A3CDA4F008595A9 /* Enums.swift in Sources */,
 				57F347042A3A6BA500ECD363 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

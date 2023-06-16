@@ -57,12 +57,12 @@ class OfferListViewModel {
         }
     }
     
-    func loadOffers(completion: @escaping (Result<Void, Error>) -> Void) {
-        if let offerList = offerService.loadOffers(from: "Offers", withExtension: "json") {
+    func loadOffers(completion: @escaping (Result<Void, OfferServiceError>) -> Void) {
+        if let offerList = offerService.loadOffers() {
             self.offers = offerList
             completion(.success(()))
         } else {
-            completion(.failure(OfferServiceError.failedToLoadOffers))
+            completion(.failure(.failedToLoadOfferList))
         }
     }
 

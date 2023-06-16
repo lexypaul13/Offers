@@ -16,7 +16,8 @@ class DescriptionTableViewCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.font = UIFont(name: "AvenirNext-Regular", size: 18)
+        label.textColor = UIColor(named: "4A4A4A")
         label.adjustsFontForContentSizeCategory = true
         return label
     }()

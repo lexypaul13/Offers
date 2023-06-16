@@ -45,16 +45,17 @@ class OfferDetailViewModel{
     
     
     // MARK: - Public Methods
-    func loadOffer(_ withID: String, completion: @escaping (Result<Offer?, Error>) -> Void) {
-        guard let offerList = offerService.loadOffers(from: "Offers", withExtension: "json") else {
-            let error = OfferServiceError.failedToLoadOffers
-            print("Failed to load offers: \(error)")
-            completion(.failure(error))
+    func loadOffer(_ withID: String, completion: @escaping (Result<Offer, OfferServiceError>) -> Void) {
+        guard let offerList = offerService.loadOffers() else {
+            completion(.failure(.failedToLoadOfferDetail))
+            return
+        }
+        guard let offerListID =  offerList.first(where: {$0.id == withID}) else{
             return
         }
         
-        self.offerDetail = offerList.first(where: {$0.id == withID})
-        completion(.success(self.offerDetail))
+        self.offerDetail = offerListID
+        completion(.success(self.offerDetail!))
     }
 
     

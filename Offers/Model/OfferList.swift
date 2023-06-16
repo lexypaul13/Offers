@@ -12,12 +12,12 @@ typealias OfferList = [Offer]
 
 
 struct Offer: Codable{
-    let id: String
+    let id: String?
     let url: URL?
-    let name: String
-    let description: String
-    let terms: String
-    let currentValue: String
+    let name: String?
+    let description: String?
+    let terms: String?
+    let currentValue: String?
     var favorite = false
     enum CodingKeys: String, CodingKey {
            case id, url, name, description, terms

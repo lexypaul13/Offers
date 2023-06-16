@@ -8,7 +8,9 @@
 import Foundation
 
 enum OfferServiceError: Error {
-    case failedToLoadOffers
+    case failedToLoadOfferDetail
+    case offerNotFound
+    case failedToLoadOfferList
 }
 
 // MARK: - OfferService
@@ -24,8 +26,8 @@ class OfferService {
     }
     
     // MARK: - Methods
-    func loadOffers(from file: String, withExtension fileExtension: String) -> [Offer]? {
-        guard let data = OfferService.loadData(from: file, withExtension: fileExtension),
+    func loadOffers() -> [Offer]? {
+        guard let data = OfferService.loadData(from: "Offers", withExtension: "json"),
               let parsedOffers = OfferService.parseJSON(data: data, type: [Offer].self)
         else {
             return nil

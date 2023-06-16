@@ -11,7 +11,7 @@ class DetailViewController: UIViewController {
     
     // MARK: - Properties
     private let tableView = UITableView()
-    var viewModel: OfferDetailViewModel?
+    var viewModel: OfferDetailViewModel
     var isFavorite : Bool = false
     var callback :((Bool)->Void)?
     
@@ -24,33 +24,36 @@ class DetailViewController: UIViewController {
     
     private let productNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Regular", size: 17)
-        label.textColor =  UIColor(name: "#4A4A4A")
+        label.font = AppFont.avenirNextRegular.size(14)
+        label.textColor = AppColor.darkGray.color
         label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 0
         return label
     }()
     
     private let productPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
-        label.textColor =  UIColor(name: "#4A4A4A")
+        label.font = AppFont.avenirNextDemiBold.size(18)
+        label.textColor = AppColor.darkGray.color
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
     
     private let heartButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(systemName: "heart"), for: .normal)
-        button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        button.setImage(SystemImage.heart.image, for: .normal)
+        button.setImage(SystemImage.heartFill.image, for: .selected)
         button.tintColor = .red
         button.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
         return button
     }()
     
+    
     // MARK: - Initializers
     init(offerID: String) {
-        super.init(nibName: nil, bundle: nil)
         self.viewModel = OfferDetailViewModel(offerID: offerID)
+        super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -60,7 +63,7 @@ class DetailViewController: UIViewController {
     // MARK: - Life Cycle Methods
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        
         if self.isMovingFromParent {
             callback?(heartButton.isSelected)
         }
@@ -69,12 +72,17 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         heartButton.isSelected = isFavorite
-        
+        getOfferDetail()
         setupTableHeaderView()
         setupTableView()
         self.view.backgroundColor = .white
         
-        viewModel?.loadOffer(viewModel?.offerID ?? "", completion: { [weak self] result in
+        
+    }
+    
+    
+    private func getOfferDetail(){
+        viewModel.loadOffer(viewModel.offerID , completion: { [weak self] result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
@@ -84,8 +92,9 @@ class DetailViewController: UIViewController {
                 print(error)
             }
         })
+        
+        
     }
-    
     // MARK: - Setup Methods
     private func setupTableHeaderView() {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 400))
@@ -123,10 +132,10 @@ class DetailViewController: UIViewController {
             make.right.equalToSuperview().offset(-insetMargin)
         }
         
-        productNameLabel.text = viewModel?.offerName
-        productPriceLabel.text = viewModel?.offerPrice
+        productNameLabel.text = viewModel.offerName
+        productPriceLabel.text = viewModel.offerPrice
         
-        if let offerImageUrl = viewModel?.offerImage {
+        if let offerImageUrl = viewModel.offerImage {
             productImageView.loadImageUsingCache(withUrl: offerImageUrl)
         }
     }
@@ -165,7 +174,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 30))
         headerView.backgroundColor = .lightGray
-    
+        
         let titleLabel = UILabel()
         titleLabel.frame = CGRect(x: 15, y: 0, width: headerView.bounds.width - 30, height: headerView.bounds.height)
         titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -186,12 +195,11 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionTableViewCell.identifier, for: indexPath) as! DescriptionTableViewCell
-            cell.configure(with: viewModel?.offerDesctiption)
+            cell.configure(with: viewModel.offerDesctiption)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TermsTableViewCell.identifier, for: indexPath) as! TermsTableViewCell
-            
-            cell.configure(with: viewModel?.offerTerms)
+            cell.configure(with: viewModel.offerTerms)
             return cell
         }
     }
