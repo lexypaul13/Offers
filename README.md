@@ -1,14 +1,7 @@
 # Offers
 Offers is a mobile application written in Swift. It displays a list of offers from JSON that is loaded locally. Users can like or dislike an item
 
-
-Frame Works:
-Codable,
-URL session,
-Snapkit
-NScache, Codable and 
-Tableview
-Collectionview
+Frame Works: Codable, URL session, Snapkit NScache, Codable and Tableview Collection view
 
 
 # Installation of SnapKit using Swift Package Manager
