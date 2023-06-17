@@ -25,7 +25,7 @@ class DetailViewController: UIViewController {
     private let productNameLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.avenirNextRegular.size(14)
-        label.textColor = AppColor.darkGray.color
+        label.textColor = AppColor.gray.color
         label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 0
         return label
@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
     private let productPriceLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.avenirNextDemiBold.size(18)
-        label.textColor = AppColor.darkGray.color
+        label.textColor = AppColor.gray.color
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
@@ -75,23 +75,13 @@ class DetailViewController: UIViewController {
         getOfferDetail()
         setupTableHeaderView()
         setupTableView()
+        setupLabels()
         self.view.backgroundColor = .white
-        
-        
     }
     
     
     private func getOfferDetail(){
-        viewModel.loadOffer(viewModel.offerID , completion: { [weak self] result in
-            switch result {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self?.setupLabels()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        })
+        viewModel.loadOffer(viewModel.offerID)
         
         
     }

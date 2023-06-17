@@ -24,11 +24,11 @@ enum AppFont: String {
 }
 
 enum AppColor: String {
-    case darkGray = "#4A4A4A"
+    case gray = "#4A4A4A"
     case lightGray = "#E7E7E7"
     var color: UIColor {
         switch self {
-        case .darkGray:
+        case .gray:
             return UIColor(name: self.rawValue)
         case .lightGray:
             return UIColor(name: self.rawValue)

@@ -45,9 +45,8 @@ class OfferDetailViewModel{
     
     
     // MARK: - Public Methods
-    func loadOffer(_ withID: String, completion: @escaping (Result<Offer, OfferServiceError>) -> Void) {
+    func loadOffer(_ withID: String) {
         guard let offerList = offerService.loadOffers() else {
-            completion(.failure(.failedToLoadOfferDetail))
             return
         }
         guard let offerListID =  offerList.first(where: {$0.id == withID}) else{
@@ -55,10 +54,6 @@ class OfferDetailViewModel{
         }
         
         self.offerDetail = offerListID
-        completion(.success(self.offerDetail!))
     }
-
-    
-    
     
 }

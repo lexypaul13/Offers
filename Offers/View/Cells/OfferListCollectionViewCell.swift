@@ -41,7 +41,7 @@ class OfferListCollectionViewCell: UICollectionViewCell {
     private let productNameLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.avenirNextRegular.size(11)
-        label.textColor = AppColor.darkGray.color
+        label.textColor = AppColor.gray.color
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
@@ -49,7 +49,7 @@ class OfferListCollectionViewCell: UICollectionViewCell {
     private let productAmountLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.avenirNextDemiBold.size(12)
-        label.textColor = AppColor.darkGray.color
+        label.textColor = AppColor.gray.color
         label.adjustsFontForContentSizeCategory = true
         return label
     }()

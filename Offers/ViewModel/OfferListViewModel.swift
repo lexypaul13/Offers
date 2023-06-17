@@ -57,13 +57,8 @@ class OfferListViewModel {
         }
     }
     
-    func loadOffers(completion: @escaping (Result<Void, OfferServiceError>) -> Void) {
-        if let offerList = offerService.loadOffers() {
-            self.offers = offerList
-            completion(.success(()))
-        } else {
-            completion(.failure(.failedToLoadOfferList))
-        }
+    func loadOffers() {
+        self.offers = offerService.loadOffers() ?? []
     }
 
     // MARK: - Helper Methods

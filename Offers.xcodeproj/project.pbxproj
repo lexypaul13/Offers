@@ -201,8 +201,8 @@
 		57E9B6F52A39180F00C61FC0 /* Parsing  */ = {
 			isa = PBXGroup;
 			children = (
-				57E9B6F12A39164D00C61FC0 /* JSONParser.swift */,
 				578B12992A3D4A83008595A9 /* OfferService.swift */,
+				57E9B6F12A39164D00C61FC0 /* JSONParser.swift */,
 				57E9B6F62A3920D600C61FC0 /* ImageCache.swift */,
 				57F347032A3A6BA500ECD363 /* Protocols.swift */,
 			);
