@@ -8,7 +8,7 @@ URL session,
 Snapkit
 NScache, Codable and 
 Tableview
-Collection
+Collectionview
 
 
 # Installation of SnapKit using Swift Package Manager
