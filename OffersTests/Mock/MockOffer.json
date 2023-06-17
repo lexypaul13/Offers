@@ -1,0 +1,22 @@
+
+
+[
+    {
+        "id": "offer1",
+        "name": "Offer 1",
+        "currentValue": "10",
+        "description": "This is the first offer",
+        "terms": "These are the terms for the first offer",
+        "url": "http://example.com/image1.png",
+        "favorite": true
+    },
+    {
+        "id": "offer2",
+        "name": "Offer 2",
+        "currentValue": "20",
+        "description": "This is the second offer",
+        "terms": "These are the terms for the second offer",
+        "url": "http://example.com/image2.png",
+        "favorite": false
+    }
+]

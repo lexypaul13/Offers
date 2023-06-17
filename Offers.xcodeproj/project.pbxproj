@@ -8,18 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		578B12882A3CDA4F008595A9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578B12872A3CDA4F008595A9 /* Enums.swift */; };
+		578B128C2A3D0FE0008595A9 /* MockJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578B128B2A3D0FE0008595A9 /* MockJSONParser.swift */; };
+		578B12902A3D17B9008595A9 /* OfferServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578B128F2A3D17B8008595A9 /* OfferServiceTests.swift */; };
+		578B12962A3D3A46008595A9 /* MockOfferService .swift in Sources */ = {isa = PBXBuildFile; fileRef = 578B12952A3D3A46008595A9 /* MockOfferService .swift */; };
+		578B12982A3D3BD2008595A9 /* OfferListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578B12972A3D3BD2008595A9 /* OfferListViewModelTests.swift */; };
+		578B129A2A3D4A83008595A9 /* OfferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578B12992A3D4A83008595A9 /* OfferService.swift */; };
+		578B129E2A3D675E008595A9 /* MockOffer.json in Resources */ = {isa = PBXBuildFile; fileRef = 578B129D2A3D675E008595A9 /* MockOffer.json */; };
 		57E9B6B82A37901E00C61FC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6B72A37901E00C61FC0 /* AppDelegate.swift */; };
 		57E9B6BA2A37901E00C61FC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6B92A37901E00C61FC0 /* SceneDelegate.swift */; };
 		57E9B6C12A37902000C61FC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57E9B6C02A37902000C61FC0 /* Assets.xcassets */; };
 		57E9B6C42A37902000C61FC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57E9B6C22A37902000C61FC0 /* LaunchScreen.storyboard */; };
-		57E9B6CF2A37902100C61FC0 /* OffersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6CE2A37902100C61FC0 /* OffersTests.swift */; };
 		57E9B6D92A37902100C61FC0 /* OffersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6D82A37902100C61FC0 /* OffersUITests.swift */; };
 		57E9B6DB2A37902100C61FC0 /* OffersUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6DA2A37902100C61FC0 /* OffersUITestsLaunchTests.swift */; };
 		57E9B6EA2A37924E00C61FC0 /* OffersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6E92A37924E00C61FC0 /* OffersListViewController.swift */; };
 		57E9B6EE2A3793B200C61FC0 /* Offers.json in Resources */ = {isa = PBXBuildFile; fileRef = 57E9B6ED2A3793B200C61FC0 /* Offers.json */; };
 		57E9B6F02A39136000C61FC0 /* OfferList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6EF2A39136000C61FC0 /* OfferList.swift */; };
 		57E9B6F22A39164D00C61FC0 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6F12A39164D00C61FC0 /* JSONParser.swift */; };
-		57E9B6F42A3917E500C61FC0 /* OfferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6F32A3917E500C61FC0 /* OfferService.swift */; };
 		57E9B6F72A3920D600C61FC0 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6F62A3920D600C61FC0 /* ImageCache.swift */; };
 		57E9B6FB2A39252400C61FC0 /* OfferListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6FA2A39252400C61FC0 /* OfferListViewModel.swift */; };
 		57E9B6FD2A392E2300C61FC0 /* OfferDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B6FC2A392E2300C61FC0 /* OfferDetailViewModel.swift */; };
@@ -51,6 +55,12 @@
 
 /* Begin PBXFileReference section */
 		578B12872A3CDA4F008595A9 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		578B128B2A3D0FE0008595A9 /* MockJSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockJSONParser.swift; sourceTree = "<group>"; };
+		578B128F2A3D17B8008595A9 /* OfferServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferServiceTests.swift; sourceTree = "<group>"; };
+		578B12952A3D3A46008595A9 /* MockOfferService .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MockOfferService .swift"; sourceTree = "<group>"; };
+		578B12972A3D3BD2008595A9 /* OfferListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferListViewModelTests.swift; sourceTree = "<group>"; };
+		578B12992A3D4A83008595A9 /* OfferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferService.swift; sourceTree = "<group>"; };
+		578B129D2A3D675E008595A9 /* MockOffer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockOffer.json; sourceTree = "<group>"; };
 		57E9B6B42A37901E00C61FC0 /* Offers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Offers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E9B6B72A37901E00C61FC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57E9B6B92A37901E00C61FC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,7 +68,6 @@
 		57E9B6C32A37902000C61FC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57E9B6C52A37902000C61FC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57E9B6CA2A37902100C61FC0 /* OffersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OffersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		57E9B6CE2A37902100C61FC0 /* OffersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTests.swift; sourceTree = "<group>"; };
 		57E9B6D42A37902100C61FC0 /* OffersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OffersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E9B6D82A37902100C61FC0 /* OffersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersUITests.swift; sourceTree = "<group>"; };
 		57E9B6DA2A37902100C61FC0 /* OffersUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -66,7 +75,6 @@
 		57E9B6ED2A3793B200C61FC0 /* Offers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Offers.json; sourceTree = "<group>"; };
 		57E9B6EF2A39136000C61FC0 /* OfferList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferList.swift; sourceTree = "<group>"; };
 		57E9B6F12A39164D00C61FC0 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
-		57E9B6F32A3917E500C61FC0 /* OfferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferService.swift; sourceTree = "<group>"; };
 		57E9B6F62A3920D600C61FC0 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		57E9B6FA2A39252400C61FC0 /* OfferListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferListViewModel.swift; sourceTree = "<group>"; };
 		57E9B6FC2A392E2300C61FC0 /* OfferDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailViewModel.swift; sourceTree = "<group>"; };
@@ -104,6 +112,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		578B129F2A3D6D8A008595A9 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				578B129D2A3D675E008595A9 /* MockOffer.json */,
+				578B12952A3D3A46008595A9 /* MockOfferService .swift */,
+				578B128B2A3D0FE0008595A9 /* MockJSONParser.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		57E9B6AB2A37901E00C61FC0 = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +163,9 @@
 		57E9B6CD2A37902100C61FC0 /* OffersTests */ = {
 			isa = PBXGroup;
 			children = (
-				57E9B6CE2A37902100C61FC0 /* OffersTests.swift */,
+				578B129F2A3D6D8A008595A9 /* Mock */,
+				578B128F2A3D17B8008595A9 /* OfferServiceTests.swift */,
+				578B12972A3D3BD2008595A9 /* OfferListViewModelTests.swift */,
 			);
 			path = OffersTests;
 			sourceTree = "<group>";
@@ -182,7 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				57E9B6F12A39164D00C61FC0 /* JSONParser.swift */,
-				57E9B6F32A3917E500C61FC0 /* OfferService.swift */,
+				578B12992A3D4A83008595A9 /* OfferService.swift */,
 				57E9B6F62A3920D600C61FC0 /* ImageCache.swift */,
 				57F347032A3A6BA500ECD363 /* Protocols.swift */,
 			);
@@ -328,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578B129E2A3D675E008595A9 /* MockOffer.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578B129A2A3D4A83008595A9 /* OfferService.swift in Sources */,
 				57E9B7082A396F6900C61FC0 /* DetailViewController.swift in Sources */,
 				57E9B6FB2A39252400C61FC0 /* OfferListViewModel.swift in Sources */,
 				57E9B6F02A39136000C61FC0 /* OfferList.swift in Sources */,
@@ -358,7 +380,6 @@
 				57E9B6BA2A37901E00C61FC0 /* SceneDelegate.swift in Sources */,
 				57E9B7032A393CDA00C61FC0 /* OfferListCollectionViewCell.swift in Sources */,
 				57E9B70A2A39761100C61FC0 /* DescriptionTableViewCell.swift in Sources */,
-				57E9B6F42A3917E500C61FC0 /* OfferService.swift in Sources */,
 				578B12882A3CDA4F008595A9 /* Enums.swift in Sources */,
 				57F347042A3A6BA500ECD363 /* Protocols.swift in Sources */,
 			);
@@ -368,7 +389,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57E9B6CF2A37902100C61FC0 /* OffersTests.swift in Sources */,
+				578B128C2A3D0FE0008595A9 /* MockJSONParser.swift in Sources */,
+				578B12982A3D3BD2008595A9 /* OfferListViewModelTests.swift in Sources */,
+				578B12902A3D17B9008595A9 /* OfferServiceTests.swift in Sources */,
+				578B12962A3D3A46008595A9 /* MockOfferService .swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

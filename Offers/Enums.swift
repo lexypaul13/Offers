@@ -7,6 +7,13 @@
 
 import Foundation
 import UIKit
+
+enum OfferServiceError: Error {
+    case failedToLoadOfferDetail
+    case offerNotFound
+    case failedToLoadOfferList
+}
+
 enum AppFont: String {
     case avenirNextRegular = "AvenirNext-Regular"
     case avenirNextDemiBold = "AvenirNext-DemiBold"

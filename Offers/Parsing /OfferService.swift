@@ -1,43 +1,38 @@
 //
-//  FeedService.swift
+//  OfferService.swift
 //  Offers
 //
-//  Created by Alex Paul on 6/13/23.
+//  Created by Alex Paul on 6/16/23.
 //
 
 import Foundation
-
-enum OfferServiceError: Error {
-    case failedToLoadOfferDetail
-    case offerNotFound
-    case failedToLoadOfferList
-}
 
 // MARK: - OfferService
 class OfferService {
     
     // MARK: - Properties
-    private var offers: [Offer] = []
-    private let OfferService: JSONParsable & DataLoader
-
+    var offers: [Offer] = []
+    let dataParser: (JSONParsable & DataLoader)
+    var fileName: String
+    var fileExtension: String
+    
     // MARK: - Initialization
-    init(feedManager: (JSONParsable & DataLoader) = JSONParser()) {
-        self.OfferService = feedManager
+    init(fileName: String = "Offers", fileExtension: String = "json", dataParser: (JSONParsable & DataLoader) = JSONParser()) {
+        self.fileName = fileName
+        self.fileExtension = fileExtension
+        self.dataParser = dataParser
     }
     
     // MARK: - Methods
     func loadOffers() -> [Offer]? {
-        guard let data = OfferService.loadData(from: "Offers", withExtension: "json"),
-              let parsedOffers = OfferService.parseJSON(data: data, type: [Offer].self)
+        guard let data = dataParser.loadData(from: fileName, withExtension: fileExtension),
+              let parsedOffers = dataParser.parseJSON(data: data, type: [Offer].self)
         else {
             return nil
         }
         self.offers = parsedOffers
         return parsedOffers
     }
-
 }
-
-
 
 

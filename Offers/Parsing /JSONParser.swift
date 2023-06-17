@@ -12,12 +12,16 @@ class JSONParser: JSONParsable, DataLoader {
     
     // MARK: - DataLoader
     func loadData(from fileName: String, withExtension fileType: String) -> Data? {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: fileType),
-              let data = try? Data(contentsOf: url)
-        else {
+        do {
+            guard let url = Bundle.main.url(forResource: fileName, withExtension: fileType) else {
+                return nil
+            }
+            let data = try Data(contentsOf: url)
+            return data
+        } catch {
+            print("Error loading data: \(error)")
             return nil
         }
-        return data
     }
     
     // MARK: - JSONParsable
