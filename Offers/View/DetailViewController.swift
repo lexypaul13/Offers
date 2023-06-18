@@ -124,9 +124,10 @@ class DetailViewController: UIViewController {
         
         productNameLabel.text = viewModel.offerName
         productPriceLabel.text = viewModel.offerPrice
-        
+        let placeholderImage = UIImage(named: SystemImage.noImage.rawValue)
+
         if let offerImageUrl = viewModel.offerImage {
-            productImageView.loadImageUsingCache(withUrl: offerImageUrl)
+            productImageView.loadImageUsingCache(withUrl: offerImageUrl,placeholder: placeholderImage)
         }
     }
     
@@ -192,6 +193,10 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource{
             cell.configure(with: viewModel.offerTerms)
             return cell
         }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
     }
 }
 

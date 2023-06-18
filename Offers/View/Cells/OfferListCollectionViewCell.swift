@@ -53,6 +53,7 @@ class OfferListCollectionViewCell: UICollectionViewCell {
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
+    let placeholderImage = UIImage(named: SystemImage.noImage.rawValue)
 
     
     // MARK: - Initializers
@@ -117,7 +118,7 @@ class OfferListCollectionViewCell: UICollectionViewCell {
         guard let productImage else {
             return 
         }
-        productImageView.loadImageUsingCache(withUrl: productImage)
+        productImageView.loadImageUsingCache(withUrl: productImage, placeholder: placeholderImage)
         productAmountLabel.text = productAmount
         productNameLabel.text = productName
         heartButton.isSelected = isFavourite

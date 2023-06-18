@@ -39,7 +39,7 @@ enum AppColor: String {
 enum SystemImage: String {
     case heart = "heart"
     case heartFill = "heart.fill"
-    
+    case noImage = "no-image"
     var image: UIImage? {
         return UIImage(systemName: self.rawValue)
     }
