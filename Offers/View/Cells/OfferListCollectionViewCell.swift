@@ -116,7 +116,8 @@ class OfferListCollectionViewCell: UICollectionViewCell {
     // MARK: - Configuration Method
     func configure(productImage: URL?, productAmount: String?, productName: String?, isFavourite: Bool) {
         guard let productImage else {
-            return 
+            productImageView.image = placeholderImage
+            return
         }
         productImageView.loadImageUsingCache(withUrl: productImage, placeholder: placeholderImage)
         productAmountLabel.text = productAmount

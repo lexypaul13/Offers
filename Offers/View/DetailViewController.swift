@@ -125,10 +125,12 @@ class DetailViewController: UIViewController {
         productNameLabel.text = viewModel.offerName
         productPriceLabel.text = viewModel.offerPrice
         let placeholderImage = UIImage(named: SystemImage.noImage.rawValue)
-
-        if let offerImageUrl = viewModel.offerImage {
-            productImageView.loadImageUsingCache(withUrl: offerImageUrl,placeholder: placeholderImage)
+        
+        guard let productImage = viewModel.offerImage else {
+            productImageView.image = placeholderImage
+            return
         }
+        productImageView.loadImageUsingCache(withUrl: productImage, placeholder: placeholderImage)
     }
     
     private func setupTableView() {
